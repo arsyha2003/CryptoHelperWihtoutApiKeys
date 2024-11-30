@@ -145,7 +145,7 @@ namespace CryptoHelper
             await Task.Run(() =>
             {
                 UpdateClassObjects();
-                TelegramBotClient botClient = new TelegramBotClient("6334123432:AAG_O81CCRmk-WvxBgUGRgK1mr9a2PWAyQo");
+                TelegramBotClient botClient = new TelegramBotClient("");
                 List<string> tokens = situation.GetTokens();
                 while (true)
                 {
