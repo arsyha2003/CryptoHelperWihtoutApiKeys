@@ -140,8 +140,21 @@ namespace CryptoHelper
             situation.bingX = new BingXExchange();
             situation.kucoin = new KucoinExchange();
         }
+        public async void StartArbitrageButton(object sender, EventArgs e)
+        {
+            StartArbitrage();
+        }
         public async Task StartArbitrage()
         {
+            var splitted = textBox4.Text.Split(" ");
+            foreach (var split in splitted)
+            {
+                try
+                {
+                    telegramUIDs.Add(Convert.ToInt32(split));
+                }
+                catch { continue; }
+            }
             await Task.Run(() =>
             {
                 UpdateClassObjects();
@@ -161,16 +174,15 @@ namespace CryptoHelper
                         message = situation.GetArbitrageSituation(pare);
                         if (message != string.Empty)
                         {
-                            botClient.SendTextMessageAsync(-1002302745075, message, null, Telegram.Bot.Types.Enums.ParseMode.Html);
+                            foreach(int uid in telegramUIDs)
+                            {
+                                botClient.SendTextMessageAsync(uid, message, null, Telegram.Bot.Types.Enums.ParseMode.Html);
+                            }
+
                         }
                     }
                 }
             });
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

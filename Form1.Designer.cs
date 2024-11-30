@@ -170,6 +170,7 @@
             button4.TabIndex = 14;
             button4.Text = "Запустить бота арбитражника";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += StartArbitrageButton;
             // 
             // textBox4
             // 
@@ -211,7 +212,6 @@
             Controls.Add(comboBox1);
             Name = "Form1";
             Text = "Form1";
-            Load += Form1_Load;
             ResumeLayout(false);
             PerformLayout();
         }
